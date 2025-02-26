@@ -69,8 +69,8 @@
     <xacro:property name="model_num" value="${scope_parent_model_num}"/>
 
     <!-- add one world link if no 'attach_to' specified  -->
-    <xacro:if value="${attach_to == 'world' and create_attach_link}">
-      <link name="world" />
+    <xacro:if value="${attach_to == 'base_link' and create_attach_link}">
+      <link name="base_link" />
     </xacro:if>
 
     <joint name="${prefix}world_joint" type="fixed">
@@ -216,7 +216,7 @@
       <xacro:include filename="$(find xarm_description)/urdf/camera/realsense_d435i.urdf.xacro" />
       <xacro:d435i_urdf prefix="${prefix}" add_d435i_links="${add_d435i_links}" />
       <xacro:if value="${add_d435i_links}">
-        <xacro:include filename="$(find xarm_description)/urdf/camera/realsense.gazebo.xacro" />    
+        <xacro:include filename="$(find xarm_description)/urdf/camera/realsense.gazebo.xacro" />
         <xacro:realsense_gazebo prefix="${prefix}" />
       </xacro:if>
     </xacro:if>
