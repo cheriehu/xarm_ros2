@@ -69,8 +69,8 @@
     <xacro:property name="model_num" value="${scope_parent_model_num}"/>
 
     <!-- add one world link if no 'attach_to' specified  -->
-    <xacro:if value="${attach_to == 'base_link' and create_attach_link}">
-      <link name="base_link" />
+    <xacro:if value="${attach_to == 'link_base_fixed' and create_attach_link}">
+      <link name="link_base_fixed" />
     </xacro:if>
 
     <joint name="${prefix}world_joint" type="fixed">

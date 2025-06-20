@@ -7,14 +7,12 @@
     
     <link name="${prefix}link_eef">
       <xacro:common_link_visual 
-        mesh_filename="camera/realsense/visual/d435_with_cam_stand_new"
-        scale="0.001 0.001 0.001"
+        mesh_filename="camera/realsense/visual/d435_with_cam_stand"  
         origin_xyz="0 0 0" 
         origin_rpy="0 0 0"
         material_name="${prefix}Silver" />
       <xacro:common_link_collision 
-        mesh_filename="camera/realsense/collision/d435_with_cam_stand_new"
-        scale="0.001 0.001 0.001"
+        mesh_filename="camera/realsense/collision/d435_with_cam_stand"  
         origin_xyz="0 0 0" 
         origin_rpy="0 0 0" />
     </link>
@@ -42,7 +40,7 @@
       <joint name="${prefix}camera_link_joint" type="fixed">
         <parent link="${prefix}link_eef" />
         <child link="${prefix}camera_link" />
-        <origin xyz="0.1 -0.0175 0.0267" rpy="${M_PI} ${-M_PI/2} 0" />
+        <origin xyz="0.06746 -0.0175 0.0237" rpy="${M_PI} ${-M_PI/2} 0" />
       </joint>
 
       <joint name="${prefix}camera_depth_joint" type="fixed">
