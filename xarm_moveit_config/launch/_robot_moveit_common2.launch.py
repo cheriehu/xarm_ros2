@@ -35,6 +35,34 @@ def launch_setup(context, *args, **kwargs):
     moveit_config_dict = yaml.load(moveit_config_dump, Loader=yaml.FullLoader)
     moveit_config_package_name = 'xarm_moveit_config'
 
+    octomap_config = {'octomap_frame': 'link_base_fixed', 
+                      'octomap_resolution': 0.03,
+                      'max_range': 5.0}
+    
+    octomap_depth_update_config = {'sensors': ['depth_camera'], 
+                                   'depth_camera': {'sensor_plugin': 'occupancy_map_monitor/DepthImageOctomapUpdater', 
+                                                    # 'image_topic': '/aligned_depth_to_color/image_raw', 
+                                                    'image_topic': '/camera/camera/aligned_depth_to_color/image_raw', 
+                                                    'queue_size': 5, 
+                                                    'near_clipping_plane_distance': 0.3, 
+                                                    'far_clipping_plane_distance': 5.0, 
+                                                    'shadow_threshold': 0.2, 
+                                                    'padding_scale': 4.0, 
+                                                    'padding_offset': 0.03, 
+                                                    'max_update_rate': 0.1, 
+                                                    'filtered_cloud_topic': '/filtered_cloud'}}
+
+    octomap_pointcloud_config = {'sensors': ['point_cloud_cam'], 
+                                    'point_cloud_cam': {'sensor_plugin': 'occupancy_map_monitor/PointCloudOctomapUpdater', 
+                                    # 'point_cloud_topic': '/depth/color/points',
+                                    'point_cloud_topic': '/camera/camera/depth/color/points',
+                                    'max_range': 3.0, 
+                                    'point_subsample': 10, 
+                                    'padding_offset': 0.1, 
+                                    'padding_scale': 4.0, 
+                                    'max_update_rate': 1.0, 
+                                    'filtered_cloud_topic': '/filtered_cloud'}}
+
     # Start the actual move_group node/action server
     move_group_node = Node(
         package='moveit_ros_move_group',
@@ -43,6 +71,9 @@ def launch_setup(context, *args, **kwargs):
         parameters=[
             moveit_config_dict,
             {'use_sim_time': use_sim_time},
+            {'publish_robot_description_semantic': True},
+            # octomap_config,
+            # octomap_pointcloud_config,
         ],
     )
 
