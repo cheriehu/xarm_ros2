@@ -224,7 +224,7 @@
       <link name="${prefix}link_eef"/>
     </xacro:unless>
     <joint name="${prefix}joint_eef" type="fixed">
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0.06" rpy="0 0 0" />
       <parent link="${prefix}link${dof}" />
       <child link="${prefix}link_eef" />
     </joint>
@@ -277,6 +277,10 @@
         geometry_mesh_tcp_xyz="${geometry_mesh_tcp_xyz}" geometry_mesh_tcp_rpy="${geometry_mesh_tcp_rpy}"
       />
     </xacro:if>
+
+    <!-- Load FT sensor URDF -->
+    <xacro:include filename="$(find xarm_description)/urdf/other/ft_sensor.urdf.xacro" />
+    <xacro:ft_sensor prefix="${prefix}" attach_to="${prefix}link6"/>
 
     <!-- gazebo_plugin -->
     <xacro:if value="${load_gazebo_plugin}">

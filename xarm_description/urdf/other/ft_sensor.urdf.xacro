@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="ft_sensor">
+
+  <xacro:macro name="ft_sensor" params="
+    prefix:='' 
+    attach_to:='link_eef' 
+    attach_xyz:='0 0 0' 
+    attach_rpy:='0 0 0' 
+    geometry_mass:='0.1' 
+    ">
+
+    <joint name="${prefix}ft_sensor" type="fixed">
+      <parent link="${attach_to}"/>
+      <child link="${prefix}ft_sensor_link"/>
+      <origin xyz="${attach_xyz}" rpy="${attach_rpy}"/>
+    </joint>
+
+    <link name="${prefix}ft_sensor_link">
+      <inertial>
+        <origin xyz="0.0 0.0 0.055" rpy="0 0 0" />
+        <mass value="${geometry_mass}" />
+        <inertia
+          ixx="0.00047106" ixy="3.9292E-07" ixz="2.6537E-06"
+          iyy="0.00033072" iyz="-1.0975E-05" izz="0.00025642" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0.03" rpy="0 0 0" />
+        <geometry>
+          <cylinder length="0.07" radius="0.05"/>
+        </geometry>
+        <material name="${prefix}White" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.03" rpy="0 0 0" />
+        <geometry>
+          <cylinder length="0.06" radius="0.0035"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- <link name="${prefix}link_ft_sensor" />
+
+    <joint name="${prefix}joint_ft_sensor" type="fixed">
+      <origin xyz="${_tcp_xyz}" rpy="${_tcp_rpy}" />
+      <parent link="${prefix}ft_sensor_link" />
+      <child link="${prefix}link_ft_sensor" />
+    </joint> -->
+
+  </xacro:macro>
+
+</robot>

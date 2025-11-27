@@ -41,10 +41,10 @@
         <xacro:property name="_origin_y" value="${geometry_radius}"/>
         <xacro:property name="_tcp_z" value="${geometry_radius * 2}"/>
       </xacro:unless>
-      <xacro:property name="_origin_xyz" value="0 0 ${_origin_y}"/>
-      <xacro:property name="_origin_rpy" value="0 0 0"/>
-      <xacro:property name="_tcp_xyz" value="0 0 ${_tcp_z}"/>
-      <xacro:property name="_tcp_rpy" value="0 0 0"/>
+      <xacro:property name="_origin_xyz" value="${geometry_mesh_origin_xyz}"/>
+      <xacro:property name="_origin_rpy" value="${geometry_mesh_origin_rpy}"/>
+      <xacro:property name="_tcp_xyz" value="${geometry_mesh_tcp_xyz}"/>
+      <xacro:property name="_tcp_rpy" value="${geometry_mesh_tcp_rpy}"/>
     </xacro:unless>
 
     <xacro:if value="${geometry_mesh_filename.startswith('file:///') or geometry_mesh_filename.startswith('package://')}">

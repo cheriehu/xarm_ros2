@@ -83,6 +83,7 @@
       <passive_joint name="${prefix}right_inner_knuckle_joint" />
       <passive_joint name="${prefix}right_outer_knuckle_joint" />
       <passive_joint name="${prefix}right_finger_joint" />
+      <passive_joint name="${prefix}ft_sensor_joint" />
       <!-- DISABLE COLLISIONS, By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
       <disable_collisions link1="${prefix}left_finger" link2="${prefix}left_inner_knuckle" reason="Default" />
       <disable_collisions link1="${prefix}left_finger" link2="${prefix}left_outer_knuckle" reason="Adjacent" />
@@ -209,5 +210,6 @@
     <disable_collisions link1="${prefix}link4" link2="${prefix}link6" reason="Never" />
     <disable_collisions link1="${prefix}link5" link2="${prefix}link6" reason="Adjacent" />
     <disable_collisions link1="${prefix}link6" link2="${prefix}link_eef" reason="Adjacent" />
+    <disable_collisions link1="${prefix}link6" link2="${prefix}ft_sensor_link" reason="Adjacent" />
   </xacro:macro>
 </robot>
